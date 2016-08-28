@@ -5,8 +5,43 @@
     <link rel="stylesheet" type="text/css" href="tachyons.min.css?date=20160818">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <meta http-equiv="refresh" content="600">
+    <script>
+      function update() {
+        var now = new Date();
+
+        // set each text value
+        window.hfaGlobals.hours.text(now.getHours());
+        window.hfaGlobals.minutes.text(now.getMinutes());
+        window.hfaGlobals.seconds.text(now.getSeconds());
+        window.hfaGlobals.time.text(now.toTimeString());
+        window.hfaGlobals.date.text(now.toDateString());
+        window.setTimeout(update, 50);
+      };
+
+      $(document).ready(
+        function() {
+          var $counter = $('#time'),
+              hfaGlobals = {
+                date: $counter.find('#date'),
+                seconds: $counter.find('#seconds'),
+                hours: $counter.find('#hours'),
+                minutes: $counter.find('#minutes')
+              };
+          window.hfaGlobals = hfaGlobals;
+          update();
+        }
+      );
+    </script>
   </head>
   <body class="sans-serif" style="background-color: #F4F4F4;">
-    <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="https://forecast.io/embed/#lat=40.663080&lon=-73.984397&name=Park Slope"> </iframe>
+    <div>
+      <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="https://forecast.io/embed/#lat=40.663080&lon=-73.984397&name=Park Slope"> </iframe>
+    </div>
+    <div id="time" class="f-headline mt6 mr4 tr">
+      <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+      <div id="date" class="f-subheadline">
+        ...
+      </div>
+    </div>
   </body>
 </html>
