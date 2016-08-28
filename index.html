@@ -10,9 +10,6 @@
         var now = new Date();
 
         // set each text value
-        window.hfaGlobals.hours.text(now.getHours());
-        window.hfaGlobals.minutes.text(now.getMinutes());
-        window.hfaGlobals.seconds.text(now.getSeconds());
         window.hfaGlobals.time.text(now.toTimeString());
         window.hfaGlobals.date.text(now.toDateString());
         window.setTimeout(update, 50);
@@ -20,12 +17,10 @@
 
       $(document).ready(
         function() {
-          var $counter = $('#time'),
+          var $counter = $('#clock'),
               hfaGlobals = {
                 date: $counter.find('#date'),
-                seconds: $counter.find('#seconds'),
-                hours: $counter.find('#hours'),
-                minutes: $counter.find('#minutes')
+                time: $counter.find('#time')
               };
           window.hfaGlobals = hfaGlobals;
           update();
@@ -37,11 +32,9 @@
     <div>
       <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="https://forecast.io/embed/#lat=40.663080&lon=-73.984397&name=Park Slope"> </iframe>
     </div>
-    <div id="time" class="f-headline mt6 mr4 tr">
-      <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-      <div id="date" class="f-subheadline">
-        ...
-      </div>
+    <div id="clock" class="mt6 mr4 tr">
+      <div id="time" class="f1"> ... </div>
+      <div id="date" class="f2 mb4 ttu tracked"> ... </div>
     </div>
   </body>
 </html>
